@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style/global.css" />
+    <link rel="stylesheet" href="style/index.css" />
+    <title>Ergon</title>
+  </head>
+  <body>
+    <header>
+      <h1>Ergon</h1>
+    </header>
+    <main class="flex flex-col p-4 overflow-x-scroll overflow-y-hidden">
+      <div class="pb-4 text-xl text-neutral-800 font-medium">
+        <span><span class="text-neutral-600">Project:</span> <span id="project-name"></span></span>
+      </div>
+      <div class="h-full flex gap-x-2">
+        <div class="h-full pr-4" id="cards">
+          <div style="border-color: aquamarine;" draggable="true" class="w-[300px] bg-neutral-50 h-full rounded-lg border border-neutral-400 p-3">
+            <div class="flex flex-col gap-y-1">
+              <span class="text-lg text-neutral-900">Card Name here</span>
+              <p class="text-sm text-neutral-700">Add a little description for this card (optional).</p>
+            </div>
+            <div>
+
+            </div>
+          </div>
+        </div>
+        <form class="w-[300px] bg-neutral-100 flex flex-col justify-between h-full rounded-lg border-2 border-dashed border-neutral-400 p-3">
+          <div class="flex flex-col gap-y-1">
+            <input required name="name" class="text-lg" placeholder="Enter card name..."/>
+            <textarea name="desc" class="text-sm" placeholder="Add a little description for this card (optional)." rows="3"></textarea>
+            <div class="flex items-center gap-x-2 text-neutral-500">
+              <span>Select a color: </span>
+              <input name="color" type="color" class="cursor-pointer p-1 bg-neutral-200 rounded"/>
+            </div>
+          </div>
+          <div>
+            <button type="submit" disabled class="bg-neutral-800 btn w-full text-neutral-100 rounded-md py-1.5">
+              Add card
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+  <script src="js/project.js"></script>
+  <script src="js/db.js"></script>
+</html>
