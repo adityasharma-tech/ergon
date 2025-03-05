@@ -98,7 +98,7 @@ function handleListProjects() {
 }
 
 function handleOpenProject(projectId){
-    window.location.replace(`/frontend/project.html?pid=${projectId}`)
+    window.location.replace(`/project.html?pid=${projectId}`)
 }
 
 function deleteProject(projectId) {
