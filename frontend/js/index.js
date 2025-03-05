@@ -19,7 +19,7 @@ function handleCreateProject() {
         name: dialog.querySelector(`form div input[name='name']`).value,
         desc: dialog.querySelector(`form div textarea[name='desc']`).value,
         updatedAt: Date.now()
-    })
+    });
 
     toogleNewProjectDialog();
 }
@@ -43,9 +43,9 @@ function handleListProjects() {
           tabindex="0"
             role="button"
             onclick="handleOpenProject('${element.id}')">
-            <h4>${element.name}</h4>
+            <h4>${sanitize(element.name)}</h4>
             <p style="color: #797d7f; font-size: small">
-              ${element.desc}
+              ${sanitize(element.desc)}
             </p>
             <ul hidden>
               <li>something here</li>

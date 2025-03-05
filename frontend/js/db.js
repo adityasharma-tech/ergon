@@ -1,5 +1,5 @@
 const DB_NAME = "NewErgonDB"
-const DB_VERSION = 3
+const DB_VERSION = 6
 
 let db;
 
@@ -12,7 +12,8 @@ request.addEventListener("upgradeneeded", evt => {
 
     db.createObjectStore("projects", { keyPath: "id", autoIncrement: true }).createIndex("name", "name", { unique: false });
     db.createObjectStore("boards", { keyPath: "id", autoIncrement: true }).createIndex("projectId", "projectId", { unique: false });
-    db.createObjectStore("tasks", { keyPath: "id", autoIncrement: true }).createIndex("boardId", "boardId", { unique: false });
+    const tasksStore = db.createObjectStore("tasks", { keyPath: "id", autoIncrement: true });
+        tasksStore.createIndex("dataId", ["projectId", "boardId"], { unique: false });
 })
 
 request.addEventListener("success", evt => {
@@ -24,6 +25,6 @@ request.addEventListener("success", evt => {
     })
 })
 
-request.addEventListener("error", evt=>{
+request.addEventListener("error", evt => {
     console.log("SOme error occured")
 })

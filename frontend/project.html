@@ -8,13 +8,11 @@
     <link rel="stylesheet" href="style/global.css" />
     <title>Ergon</title>
   </head>
-  <body style="height: 100vh;">
+  <body style="height: 100vh">
     <header>
       <a href="/frontend"><h1>Ergon</h1></a>
     </header>
-    <main
-      class="flex flex-col relative overflow-hidden"
-    >
+    <main class="flex flex-col relative overflow-hidden">
       <div class="pb-4 px-10 py-5 text-xl text-neutral-800 font-medium">
         <span
           ><span class="text-neutral-600">Project:</span>
@@ -46,59 +44,59 @@
               >
               <div class="flex gap-x-3">
                 <button
-                type="button"
-                data-value="rose"
-                onclick="setSelectedColor('rose')"
-                aria-selected="true"
+                  type="button"
+                  data-value="rose"
+                  onclick="setSelectedColor('rose')"
+                  aria-selected="true"
                   class="size-4 rounded-full aria-selected:ring-2 bg-rose-200 border-2 border-rose-600 ring-offset-1 ring-blue-600"
                 ></button>
                 <button
-                type="button"
-                data-value="amber"
-                onclick="setSelectedColor('amber')"
-                aria-selected="false"
+                  type="button"
+                  data-value="amber"
+                  onclick="setSelectedColor('amber')"
+                  aria-selected="false"
                   class="size-4 rounded-full aria-selected:ring-2 bg-amber-200 border-2 border-amber-600 ring-offset-1 ring-blue-600"
                 ></button>
                 <button
-                type="button"
-                data-value="green"
-                onclick="setSelectedColor('green')"
-                aria-selected="false"
+                  type="button"
+                  data-value="green"
+                  onclick="setSelectedColor('green')"
+                  aria-selected="false"
                   class="size-4 rounded-full aria-selected:ring-2 bg-green-200 border-2 border-green-600 ring-offset-1 ring-blue-600"
                 ></button>
                 <button
-                type="button"
-                data-value="blue"
-                onclick="setSelectedColor('blue')"
-                aria-selected="false"
+                  type="button"
+                  data-value="blue"
+                  onclick="setSelectedColor('blue')"
+                  aria-selected="false"
                   class="size-4 rounded-full aria-selected:ring-2 bg-blue-200 border-2 border-blue-600 ring-offset-1 ring-blue-600"
                 ></button>
                 <button
-                type="button"
-                data-value="cyan"
-                onclick="setSelectedColor('cyan')"
-                aria-selected="false"
+                  type="button"
+                  data-value="cyan"
+                  onclick="setSelectedColor('cyan')"
+                  aria-selected="false"
                   class="size-4 rounded-full aria-selected:ring-2 bg-cyan-200 border-2 border-cyan-600 ring-offset-1 ring-blue-600"
                 ></button>
                 <button
-                type="button"
-                data-value="purple"
-                onclick="setSelectedColor('purple')"
-                aria-selected="false"
+                  type="button"
+                  data-value="purple"
+                  onclick="setSelectedColor('purple')"
+                  aria-selected="false"
                   class="size-4 rounded-full aria-selected:ring-2 bg-purple-200 border-2 border-purple-600 ring-offset-1 ring-blue-600"
                 ></button>
                 <button
-                type="button"
-                data-value="teal"
-                onclick="setSelectedColor('teal')"
-                aria-selected="false"
+                  type="button"
+                  data-value="teal"
+                  onclick="setSelectedColor('teal')"
+                  aria-selected="false"
                   class="size-4 rounded-full aria-selected:ring-2 bg-teal-200 border-2 border-teal-600 ring-offset-1 ring-blue-600"
                 ></button>
                 <button
-                type="button"
-                data-value="yellow"
-                onclick="setSelectedColor('yellow')"
-                aria-selected="false"
+                  type="button"
+                  data-value="yellow"
+                  onclick="setSelectedColor('yellow')"
+                  aria-selected="false"
                   class="size-4 rounded-full aria-selected:ring-2 bg-yellow-200 border-2 border-yellow-600 ring-offset-1 ring-blue-600"
                 ></button>
               </div>
@@ -147,9 +145,10 @@
             </button>
             <div class="font-medium text-center text-neutral-800">Add task</div>
           </div>
+
           <div class="flex flex-col gap-y-1">
             <label for="name" class="text-xs text-neutral-500 font-medium"
-              >Task Name</label
+              >Task name</label
             >
             <input
               name="name"
@@ -158,9 +157,76 @@
               placeholder="Awesome task"
             />
           </div>
+          <div class="flex flex-col priority-selector gap-y-1">
+            <label for="name" class="text-xs text-neutral-500 font-medium"
+              >Task priority</label
+            >
+            <div class="flex gap-x-3 flex-wrap">
+              <button
+                type="button"
+                data-value="-1"
+                onclick="setSelectedPriority('-1')"
+                aria-selected="true"
+                class="bg-neutral-100 inline-flex aria-selected:ring-2 ring-offset-1 items-center px-1 py-0.5 text-xs rounded-md gap-x-1 ring-neutral-900"
+              >
+                <svg
+                  class="size-3"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.0983 3.24076C8.49627 1.40591 5.58549 2.46876 4.09436 3.62736C3.87777 3.79513 3.60744 4.00454 3.4284 4.3704C3.24819 4.73864 3.24921 5.09828 3.25013 5.42129L3.25 20.7505C3.25 21.3028 3.69772 21.7505 4.25 21.7505C4.80229 21.7505 5.25 21.3028 5.25 20.7505L5.25 14.9583C5.25 14.7996 5.25 14.7202 5.28978 14.6509C5.32955 14.5815 5.39264 14.5446 5.51882 14.4708C6.73777 13.758 8.8104 13.2493 11.4174 14.5773C15.1323 16.4697 18.3455 15.704 19.9297 14.838C20.0869 14.7538 20.3963 14.5879 20.5754 14.2858C20.7559 13.9815 20.7522 13.5956 20.7503 13.4013L20.7503 5.83419C20.7503 5.45456 20.7503 5.10916 20.7212 4.84205C20.695 4.60284 20.6267 4.1657 20.2569 3.88447C20.0487 3.72616 19.8203 3.68039 19.6469 3.67004C19.4763 3.65985 19.305 3.68077 19.1532 3.70766C18.862 3.75922 18.4501 3.87345 18.0201 3.99272C16.603 4.38564 14.5003 4.46434 12.0983 3.24076Z"
+                    fill="#1ab970"
+                  />
+                </svg>
+                <span>Low</span>
+              </button>
+              <button
+                type="button"
+                data-value="0"
+                onclick="setSelectedPriority('0')"
+                aria-selected="false"
+                class="bg-neutral-100 inline-flex aria-selected:ring-2 ring-offset-1 items-center px-1 py-0.5 text-xs rounded-md gap-x-1 ring-neutral-900"
+              >
+                <svg
+                  class="size-3"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.0983 3.24076C8.49627 1.40591 5.58549 2.46876 4.09436 3.62736C3.87777 3.79513 3.60744 4.00454 3.4284 4.3704C3.24819 4.73864 3.24921 5.09828 3.25013 5.42129L3.25 20.7505C3.25 21.3028 3.69772 21.7505 4.25 21.7505C4.80229 21.7505 5.25 21.3028 5.25 20.7505L5.25 14.9583C5.25 14.7996 5.25 14.7202 5.28978 14.6509C5.32955 14.5815 5.39264 14.5446 5.51882 14.4708C6.73777 13.758 8.8104 13.2493 11.4174 14.5773C15.1323 16.4697 18.3455 15.704 19.9297 14.838C20.0869 14.7538 20.3963 14.5879 20.5754 14.2858C20.7559 13.9815 20.7522 13.5956 20.7503 13.4013L20.7503 5.83419C20.7503 5.45456 20.7503 5.10916 20.7212 4.84205C20.695 4.60284 20.6267 4.1657 20.2569 3.88447C20.0487 3.72616 19.8203 3.68039 19.6469 3.67004C19.4763 3.65985 19.305 3.68077 19.1532 3.70766C18.862 3.75922 18.4501 3.87345 18.0201 3.99272C16.603 4.38564 14.5003 4.46434 12.0983 3.24076Z"
+                    fill="#f29008"
+                  />
+                </svg>
+                <span>Medium</span>
+              </button>
+              <button
+                type="button"
+                data-value="1"
+                onclick="setSelectedPriority('1')"
+                aria-selected="false"
+                class="bg-neutral-100 inline-flex aria-selected:ring-2 ring-offset-1 items-center px-1 py-0.5 text-xs rounded-md gap-x-1 ring-neutral-900"
+              >
+                <svg
+                  class="size-3"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.0983 3.24076C8.49627 1.40591 5.58549 2.46876 4.09436 3.62736C3.87777 3.79513 3.60744 4.00454 3.4284 4.3704C3.24819 4.73864 3.24921 5.09828 3.25013 5.42129L3.25 20.7505C3.25 21.3028 3.69772 21.7505 4.25 21.7505C4.80229 21.7505 5.25 21.3028 5.25 20.7505L5.25 14.9583C5.25 14.7996 5.25 14.7202 5.28978 14.6509C5.32955 14.5815 5.39264 14.5446 5.51882 14.4708C6.73777 13.758 8.8104 13.2493 11.4174 14.5773C15.1323 16.4697 18.3455 15.704 19.9297 14.838C20.0869 14.7538 20.3963 14.5879 20.5754 14.2858C20.7559 13.9815 20.7522 13.5956 20.7503 13.4013L20.7503 5.83419C20.7503 5.45456 20.7503 5.10916 20.7212 4.84205C20.695 4.60284 20.6267 4.1657 20.2569 3.88447C20.0487 3.72616 19.8203 3.68039 19.6469 3.67004C19.4763 3.65985 19.305 3.68077 19.1532 3.70766C18.862 3.75922 18.4501 3.87345 18.0201 3.99272C16.603 4.38564 14.5003 4.46434 12.0983 3.24076Z"
+                    fill="#ee4735"
+                  />
+                </svg>
+                <span>High</span>
+              </button>
+            </div>
+          </div>
           <div class="flex flex-col gap-y-1">
             <label for="desc" class="text-xs text-neutral-500 font-medium"
-              >Task Description (Optional)</label
+              >Task description (optional)</label
             >
             <textarea
               name="desc"
@@ -170,6 +236,7 @@
             ></textarea>
           </div>
           <button
+            type="submit"
             style="padding: 5px 0px; border-radius: 8px"
             class="text-sm bg-neutral-800 text-white mt-2"
           >
@@ -179,6 +246,7 @@
       </div>
     </main>
   </body>
+  <script src="js/utils.js"></script>
   <script src="js/project.js"></script>
   <script src="js/db.js"></script>
 </html>
