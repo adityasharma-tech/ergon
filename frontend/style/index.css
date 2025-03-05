@@ -1,91 +1,92 @@
 body {
-    height: 100vh;
+  height: 100vh;
 }
 
 .btn {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 header div {
-    display: flex;
-    column-gap: 10px;
+  display: flex;
+  column-gap: 10px;
 }
 
 header div :last-child {
-    background-color: #000;
-    color: white;
-    font-weight: 500;
+  background-color: #000;
+  color: white;
+  font-weight: 500;
 }
 
 main {
-    display: flex;
-    column-gap: 30px;
+  padding: 20px 40px;
+  display: flex;
+  column-gap: 30px;
 }
 
 #profile-img {
-    width: 200px;
-    height: 200px;
-    border: none;
-    border-radius: 100%;
+  width: 200px;
+  height: 200px;
+  border: none;
+  border-radius: 100%;
 }
 
 #profile-section,
 #projects-section {
-    max-height: 60vh;
-    border-radius: 10px;
+  max-height: 60vh;
+  border-radius: 10px;
 }
 
 #profile-section {
-    width: 30vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    row-gap: 10px;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 10px;
 }
 
 #projects-section {
-    width: 100%;
-    padding: 10px 20px;
+  width: 100%;
+  padding: 10px 20px;
 }
 
 #filter-input {
-    background-color: transparent;
-    border: none;
-    font-weight: 400;
+  background-color: transparent;
+  border: none;
+  font-weight: 400;
 }
 
 .icon {
-    width: 16px;
-    height: 16px;
-    stroke-width: 2px;
+  width: 16px;
+  height: 16px;
+  stroke-width: 2px;
 }
 
 #projects-list {
-    padding: 10px 0px;
+  padding: 10px 0px;
 }
 
 #projects-list .project div {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    padding: 10px 20px;
-    padding-right: 35px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all;
-    transition-duration: 300ms;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px 20px;
+  padding-right: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all;
+  transition-duration: 300ms;
 }
 
 #projects-list .project:hover {
-    box-shadow: 0px 0px 3px rgba(36, 31, 49, 0.09);
+  box-shadow: 0px 0px 3px rgba(36, 31, 49, 0.09);
 }
 
 #projects-list .project button {
-    position: absolute;
-    right: 3px;
-    top: 3px;
-    padding: 4px 5px;
-    display: flex;
-    border: none;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  padding: 4px 5px;
+  display: flex;
+  border: none;
 }
