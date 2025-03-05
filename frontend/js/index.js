@@ -51,7 +51,7 @@ function handleListProjects() {
               <li>something here</li>
             </ul>
             <span class="text-neutral-500 -mr-6" style="margin-left: auto; font-size: 12px"
-              >${timeAgo(element.updatedAt)}</span
+              >modified ${timeAgo(element.updatedAt)}</span
             >
             </div>
             <button onclick="deleteProject('${element.id}')" class="hover:bg-rose-50 px-5 z-10 rounded-md">
@@ -110,26 +110,6 @@ function deleteProject(projectId) {
     })
 }
 
-function timeAgo(previousTimestamp) {
-    const currentTimestamp = Date.now();
-    const elapsed = currentTimestamp - previousTimestamp;
-
-    const seconds = Math.floor(elapsed / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
-    const months = Math.floor(days / 30);
-    const years = Math.floor(days / 365);
-
-    if (seconds < 10) return "few seconds ago";
-    if (seconds < 60) return `modified ${seconds} sec ago`;
-    if (minutes < 60) return `modified ${minutes} min ago`;
-    if (hours < 24) return `modified ${hours} hr ago`;
-    if (days < 30) return `modified ${days} days ago`;
-    if (months < 12) return `modified ${months} months ago`;
-    
-    return `modified ${years} years ago`;
-}
 
 function onDbInitialized(){
   handleListProjects()

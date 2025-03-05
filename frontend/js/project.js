@@ -13,7 +13,7 @@ addTaskForm.addEventListener("submit", handleAddTask)
 
 function addBoardToDiv(id, name, desc, color) {
   const boards = document.getElementById("boards");
-  boards.innerHTML += `<div id="board-${id}" draggable="false" class="w-[300px] first:ml-10 overflow-hidden overflow-y-scroll min-h-[200px] relative flex flex-col mb-auto bg-[#fafafa] rounded-lg p-3">
+  boards.innerHTML += `<div id="board-${id}" draggable="false" class="w-[300px] first:ml-10 overflow-hidden overflow-y-auto relative flex flex-col mb-auto bg-[#fafafa] rounded-lg p-3">
 <div class="flex w-full gap-y-1 flex-col">
 <div class="flex justify-between">
 <div class="flex items-center gap-x-2">
@@ -63,7 +63,7 @@ function addBoardToDiv(id, name, desc, color) {
 ${sanitize(desc)}
 </p>
 </div>
-<div class="py-5 tasks flex flex-col gap-y-3">
+<div class="py-5 tasks min-h-[100px] flex flex-col gap-y-3 todo-drop-container h-full">
 
 </div>
 <div class="mt-auto">
@@ -88,14 +88,15 @@ New task
 </div>`
 }
 
-function addTaskToDiv(id, priority, title, desc) {
-  const board = document.getElementById(`board-${id}`)
+function addTaskToDiv(id, boardId, priority, title, desc, updatedAt) {
+  console.log('task added to div ', boardId)
+  const board = document.getElementById(`board-${boardId}`)
   const dropper = board.querySelector('.tasks');
   dropper.innerHTML += `
-    <div draggable="true"
-    ondrag="handleTaskDrag(event)"
-        class="task px-2 py-2 bg-white border border-gray-300 shadow-xs w-full rounded-lg hover:border-blue-400 hover:bg-blue-100/50 cursor-grab"
+    <div id="todo-${id}" draggable="true"
+        class="todo-draggable task px-2 py-2 relative bg-white border border-gray-300 shadow-xs w-full rounded-lg hover:border-blue-400 hover:bg-blue-100/50 cursor-grab"
       >
+      <span class="absolute top-1 right-1 text-[10px] text-gray-400"> ${timeAgo(updatedAt)} </span>
         <div
           class="bg-neutral-100 inline-flex items-center px-1 text-xs rounded-md gap-x-1"
         >
@@ -126,7 +127,7 @@ function handleListCards() {
   const tx = db.transaction("boards", "readonly");
   const store = tx.objectStore("boards")
   const index = store.index("projectId")
-  /* this also do same thing;
+  /* this also do the same thing;
   const singleKeyRange = IDBKeyRange.only((new URLSearchParams(window.location.search)).get("pid"));
   const boards = [];
   index.openCursor(singleKeyRange).addEventListener("success", evt => {
@@ -137,13 +138,12 @@ function handleListCards() {
     }
   })
   */
-  index.getAll((new URLSearchParams(window.location.search)).get("pid")).addEventListener("success", evt=>{
-    evt.target.result.forEach((board)=>{
+  index.getAll((new URLSearchParams(window.location.search)).get("pid")).addEventListener("success", evt => {
+    evt.target.result.forEach((board) => {
       addBoardToDiv(board.id, board.name, board.desc, board.color);
       handleListTasks(board.id);
     })
   })
-  
 }
 
 function handleListTasks(boardId) {
@@ -153,12 +153,14 @@ function handleListTasks(boardId) {
   const store = tx.objectStore("tasks");
   const index = store.index("dataId");
   const result = index.getAll([projectId, String(boardId)]);
-  result.addEventListener("success", evt=>{
+  result.addEventListener("success", evt => {
     document.getElementById(`board-${boardId}`).querySelector('.tasks').innerHTML = '';
-    evt.target.result.forEach(element=>{
-      addTaskToDiv(String(boardId), element.priority, element.title, element.desc)
+    evt.target.result.forEach(element => {
+      addTaskToDiv(String(element.id), String(boardId), element.priority, element.title, element.desc, element.updatedAt);
     })
     document.getElementById(`board-${boardId}`).querySelector('div div div .tasks-counter').textContent = String(evt.target.result.length)
+    // controller.abort() 
+    initializeDraggingFeatures()
   })
 }
 
@@ -204,6 +206,7 @@ function handleAddTask(evt) {
     priority: addTaskForm.querySelector(`.priority-selector div button[aria-selected='true']`).getAttribute('data-value'),
     title: addTaskForm.querySelector('div input[name="name"]').value,
     desc: addTaskForm.querySelector('div textarea[name="desc"]').value,
+    updatedAt: Date.now()
   }
 
   const result = store.add(data)
@@ -274,6 +277,26 @@ function deleteBoard(id) {
     document.getElementById(`board-${id}`).outerHTML = ''
   })
 }
+
+const deleteTodo = throttling(function (todoId) {
+  if (!todoId) throw new Error("Couldn't get boardId or todoId");
+
+  const tx = db.transaction('tasks', 'readwrite');
+  const store = tx.objectStore('tasks');
+  store.delete(Number(todoId));
+}, 200)
+
+const updateTodoBoardId = throttling(function (todoId, boardId) {
+  if (!todoId || !boardId) throw new Error('todoId or boardId not found.');
+  console.log('todoid', Number(todoId), boardId)
+  const tx = db.transaction('tasks', 'readwrite');
+  const store = tx.objectStore('tasks');
+  store.get(Number(todoId)).addEventListener('success', evt => {
+    const data = evt.target.result
+    data.boardId = boardId;
+    store.put(data);
+  })
+})
 
 function onDbInitialized() {
   handleSetTitle();

@@ -1,0 +1,8 @@
+#delete-drop-zone div {
+    max-width: 400px;
+}
+
+.dragging {
+    opacity: 50%;
+    border: 1px solid blue;
+}
