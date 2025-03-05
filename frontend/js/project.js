@@ -93,6 +93,7 @@ function addTaskToDiv(id, priority, title, desc) {
   const dropper = board.querySelector('.tasks');
   dropper.innerHTML += `
     <div draggable="true"
+    ondrag="handleTaskDrag(event)"
         class="task px-2 py-2 bg-white border border-gray-300 shadow-xs w-full rounded-lg hover:border-blue-400 hover:bg-blue-100/50 cursor-grab"
       >
         <div

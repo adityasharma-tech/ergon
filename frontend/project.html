@@ -6,6 +6,11 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="style/global.css" />
+
+    <script src="js/utils.js" defer></script>
+    <script src="js/project.js" defer></script>
+    <script src="js/drag.js" defer></script>
+    <script src="js/db.js" defer></script>
     <title>Ergon</title>
   </head>
   <body style="height: 100vh">
@@ -244,9 +249,14 @@
           </button>
         </form>
       </div>
+      <!-- delete red zone -->
+      <div
+        id="delete-zone"
+        data-visible="false"
+        class="fixed opacity-0 bottom-0 left-0 right-0 bg-gradient-to-t to-transparent from-neutral-600 flex justify-center items-center h-[30vh] data-[visible='true']:opacity-100 transition-all duration-300 z-40"
+      >
+        <span>Drop tasks here to delete them</span>
+      </div>
     </main>
   </body>
-  <script src="js/utils.js"></script>
-  <script src="js/project.js"></script>
-  <script src="js/db.js"></script>
 </html>
