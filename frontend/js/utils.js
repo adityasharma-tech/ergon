@@ -30,6 +30,7 @@ function signalDebouncer(fn){
     }
 }
 
+
 function timeAgo(previousTimestamp) {
     const currentTimestamp = Date.now();
     const elapsed = currentTimestamp - previousTimestamp;
